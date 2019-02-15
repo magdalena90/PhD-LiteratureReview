@@ -1,0 +1,88 @@
+\subsection{Methods}\label{Methods}
+
+Although the papers studied cover a variety of topics, they all tend to use the same set of methodologies to carry out their analysis.
+
+\subsubsection{Popular methods}
+Table \ref{table:Methods} shows the most used methods for analysis of gene expression data in the reviewed literature including a count of the number of papers each method was used in. These methods can be grouped into four categories: \textit{Visualisation} techniques, which are commonly used for exploratory analysis, \textit{Statistical tests} and \textit{Models}, which are used to do the main analysis, and \textit{Network Analysis}, which belongs to the Models section but was separated into its own category because of its popularity so we could study it in more detail.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{l l r}
+    Category & Method & Count \\
+    \hline
+    \multirow{4}{*}{Visualisations} & Unsupervised hierarchical clustering & 12 \\
+                                    & Correlation heatmaps & 11 \\
+                                    & PCA & 10 \\
+                                    & MDS & 7 \\
+    \hline
+    \multirow{5}{*}{Statistical tests} & Gene set enrichment analysis & 22 \\
+                                       & Differential Expression analysis & 12 \\
+                                       & Correlation between genes & 11 \\
+                                       & ANOVA & 5 \\
+                                       & t-test, chi-squared test, Fisher's test, z-test & 4 \\
+    \hline
+    \multirow{8}{*}{Models} & Linear models & 8 \\
+                            & Naive Bayes classifier & 1 \\
+                            & Deconvolution & 2 \\
+                            & Non-negative Matrix factorisation & 2 \\
+                            & Spline interpolation & 1 \\
+                            & Gaussian processes & 1 \\
+                            & Dynamic programming & 1 \\
+                            & Deep Learning & 1 \\
+    \hline
+    \multirow{4}{*}{Network Analysis} & WGCNA & 17 \\
+                                      & Module eigengene enrichment analysis & 10 \\
+                                      & Hub genes & 3 \\
+                                      & Module preservation & 4 \\
+    \end{tabular}
+    \caption{List of most popular methods for transcriptome analysis}
+    \label{table:Methods}
+\end{table}
+
+The \textit{Visualisation} techniques have provided to be useful tools when used to perform exploratory analysis of the data, especially when combining information such as brain region and phenotype (age, species or neurodevelopmental disorder) and although they are very helpful in finding global patterns of behaviour in the data, they lack the precision and sensitivity of quantitative methods.
+
+The methods included in \textit{Statistical tests} and \textit{Models} complement the Visualisation techniques, providing a formal analysis of the data. Among these methods, gene set enrichment analysis is the most popular, and although it has been criticised for having low specificity, it is more reliable than manual classification \cite{garbett_immune_2008}. Two common methods used to identify genes with expression patterns related to a predefined group of samples are differential expression analysis (DEA) and linear models. DEA gives consistently good results, but linear models generally perform poorly due to the high correlation between variables (genes) and problems arising when the number of variables is much bigger than the number of observations.
+
+\textit{Network Analysis} corrects this shortcoming by including information about the relationship between genes into its structure. It is able to identify groups of genes with a common behaviour (modules) and analyse them extracting significant underlying biological processes (enrichment analysis), finding statistically significant relations to either groups of genes (differential expression analysis) or to characteristics of the phenotype (through eigengenes), and finding genes with a central role (hub genes). This broad variety of applications has made network analysis very popular and it's usually reported to produce good results, but naby studies focus only on clustering and module characterisation without deeper analysis of the network's structure, module preservation\footnote{Only four of the seventeen papers studied this characteristic}, or justification for parameter selection during construction, raising questions about the robustness and reliability of results.
+
+\subsubsection{Approaches using classification methods}
+Focusing on the task of identifying new potential autism-related genes, the majority of the models studied so far use an unsupervised learning approach, mainly through clustering and network analysis, and only use the genes that have been previously associated with ASD to confirm their findings. A less common approach to this problem is to include these lists of ASD-related genes into the model that will identify new genes, for example, training classification methods using genes as observations, their characteristics as descriptive variables, and labels indicating if a gene has previously been identified as related to ASD or not.
+
+Two papers that have studied this approach are \cite{brueggeman_forecasting_2018} and \cite{lin_machine_2018}, using topological information from the gene co-expression network such as the module each gene belongs to as descriptive variables, and trained random forest models using the genes previously related to ASD as positive samples and the rest as negative ones. Although the two papers report an overall good performance, neither of them have any citations so far.
+
+\subsubsection{Possible new approaches}
+One problem with the approach used in the previous section is the labelling of the genes, since supervised learning models need to have both positive and negative observations to train a classification model, but in this case, the fact that a gene has not been related yet to ASD does not necessarily mean that it is actually not related to it (false negatives), so by labelling all non-related genes as negative we are actually mislabelling all the ASD-related genes that have not been discovered, and are introducing noise into the model that will affect its performance. The problem of impact class noise in the performance of machine learning algorithms has been studied before \cite{nazari_evaluation_2018} and it has been found that the amount of disruption caused in the model is directly related to the proportion of mislabelled observations, which makes it difficult to calculate the effect mislabelled observations are having on the model because we don't know the number of ASD genes still left to identify.
+
+A better approach to modelling this problem is to use Positive-Unlabelled (PU) Learning, a branch of semi-supervised learning that only needs positive samples to train a model that has as objective to identify observations with similar behaviour to the positive labelled ones from the pool of unlabelled observations. This method has been used before for disease gene identification by \cite{yang_positive-unlabeled_2012} with very good results, designing a new algorithm they called \textit{PUDI} (PU learning for disease gene identification) that characterises each gene using its biological features and topological information from the protein-protein interaction network and uses weighted support vector machines to build the PU classifier.
+
+Another problem with the supervised learning approach from the last section is that it uses information from WGCNA to characterise the descriptive variables, incorporating into the model the variability and uncertainty generated by the network's construction, and also creating reproducibility issues.
+
+Even though WGCNA is the most popular module detection method, there are several other methods that can be used for the same purpose. \cite{saelens_comprehensive_2018} evaluated the performance of 42 module detection methods classified into five categories: clustering, biclustering, direct network inference, decomposition, and iterative network inference, measuring each method's performance through four scores: recovery, relevance, recall and precision, and discovered that the decomposition methods outperform all the other methods, although they seem to be sensitive to the number of samples and can be outperformed when the sample size is small. Based on this, it could be useful to explore other module detection methods, especially the decomposition methods that use Independent Component Analysis \cite{lee_application_2003}, which were the group of methods with the highest performance inside the decomposition category.
+
+Finally, SFARI genes have a score indicating the certainty of each gene's relation to ASD, so it could be useful to incorporate this score into the objective variable instead of using a binary variable. This can be done using ordinal multiclass classifiers.
+
+Putting all of these new approaches together, an ideal model would have the following characteristics:
+\begin{enumerate}
+    \item Use PU Learning
+    \item Use module information
+    \item Take into consideration SFARI's gene scores
+    \item Include both genotype and phenotype information
+\end{enumerate}
+
+There are many approaches and algorithms that can meet the previous characteristics for the idea model, Table \ref{table:PossibleClassificationMethods} shows some algorithms that fulfil at least three of these five characteristics.
+
+\begin{table}[ht]
+\begin{tabularx}{\linewidth}{l X X X X X X}
+Method & Phenotype info. & Genotype info. & Module info. & Ordinal classif. & PU Learning \\
+\hline
+Node classification in graphs   & No  & Yes & Yes & No  & Yes \\
+PUDI algorithm                  & Yes & Yes & Yes & No  & Yes \\
+PU Learning for graph classif.  & No  & No  & Yes & No  & Yes \\
+Semi-supervised Ordinal reg.    & Yes & Yes & Yes & Yes & Yes \\
+Graph-based Recomm. System      & No  & No  & Yes & Yes & Yes \\
+\end{tabularx}
+\caption{List of models indicating which characteristics they fulfil from the ideal model defined above}
+\label{table:PossibleClassificationMethods}
+\end{table}
+
+

@@ -1,0 +1,44 @@
+\section{Introduction}\label{Intro}
+
+This review will focus on literature researching the profiling of gene expression in the brain, considering spatial, temporal and species related features, and analysing the relevance of these patterns in autism spectrum disorders (ASD) with the objective of identifying genes and biological pathways related to it.
+
+% Definition and statistics
+Autism spectrum disorder (ASD) is a neurodevelopmental disorder that is characterised by having deficits in social interaction, impaired communication, and a range of stereotyped and repetitive behaviours \cite{lord_autism_1994}, it presents during early childhood and has a current estimated prevalence of about 14.6 per 1000 children, with a higher prevalence in boys (23.6 per 1000) than among girls (5.3 per 1000) \cite{christensen_prevalence_2016}.
+
+% Heterogeneity
+It was first characterised clinically by \cite{kanner_original_1943} but it wasn't until 1980 that it was listed in the Diagnostic and Statistical Manual of Mental Disorders \cite{american_diagnostic_1980} as a neurodevelopmental condition distinct from schizophrenia \cite{voineagu_gene_2012}, and although it is known to have epigenetic, genetic and environmental origins, because it is clinically and genetically heterogeneous, it is difficult to study and its exact aetiology still remains unknown, with hundreds of genes involved in a wide variety of biological functions believed to be related to it, but at the same time accounting for only between 10 and 20\% of the ASD cases \cite{abrahams_advances_2008}.
+
+\subsection{Genetic studies}
+% hereditary component of ASD
+One of the first studies that focused on the genetic component of ASD was a twin study performed by \cite{steffenburg_twin_1989} where the concordance of autism in monozygotic and dizygotic twins was analysed and a much bigger concordance was found between the monozygotic (91\%) than in the dizygotic twins (0\%), suggesting that there is a hereditary component to this disorder. Based on this, many other experiments have been carried out to learn more about this genetic factor using different analysis. Voineagu et al. reviewed some of these methods, including their most important findings \cite{voineagu_gene_2012}:
+
+% Genetic linkage analysis
+\textit{Genetic linkage analysis} has been used to find genetic variants in chromosomal regions related to ASD, but except for chromosome 17q and 7q, no significant linkage has been found (reviewed in \cite{abrahams_advances_2008}), suggesting that autism has a complex genetic landscape.
+
+% GWAS
+\textit{Genome-wide association studies} (GWAS) have been used to study the contribution of common genetic variations through single nucleotide polymorphisms (SNPs), and also rare \textit{de novo} and inherited mutations using copy number variations (CNVs). The first group of experiments (\cite{wang_common_2009}, \cite{weiss_genome-wide_2009} and \cite{anney_genome-wide_2010}, among others),  have found SNPs associated to ASD, but none of the main studies have confirmed each others results yet, suggesting that common genetic variants have a relatively minor contribution to the disease \cite{voineagu_gene_2012}, while the second group of experiments (\cite{morrow_identifying_2008} and \cite{sebat_strong_2007}) have found that \textit{de novo} variations occur more frequently in ASD cases, identifying several chromosomal loci related to the disease and providing candidate genes.
+
+% Transcriptome
+Finally, \textit{transcriptomic analysis} has allowed the integration of genomic data with information from the phenotype and on genome function, finding significant gene expression differences and common biological pathways dysregulated in ASD.
+
+% Advantages of integrating different modalities of data
+Although transcriptomic analysis has been found to be more efficient than DNA studies in identifying differences between ASD and control samples \cite{voineagu_gene_2012}, working with more than one modality of data can be the best option to combine the advantages of each one and provide a wider picture of the genetic components of autism.
+
+\subsection{Transcriptomic analysis}
+% Identification of biological pathways
+An advantage transcriptomic analysis has over other whole genome studies is that it can have a high specificity level allowing it to study each gene independently, and it can also group genes with similar patterns of expression together to identify common underlying functionalities, providing a better understanding of the biological pathways affected as well, and even though there is a high variability in these significant genes and pathways between studies, some concordance has been discovered related to certain functionalities, such as immune response, cell cycle, cell death, gastrointestinal disease and neurogenesis, as well as consistency in up/down regulation of most of the differentially expressed genes \cite{ansel_variation_2017}.
+
+% Blood vs. brain samples
+Since autism is a neurodevelopmental disease, the best tissue to study it would be the brain, but  brain samples are very difficult to obtain, some studies use peripheral blood cells or lymphoblastoid cell lines as a replacement. The main problems of using brain samples come from the this difficulty to obtain it, making the available datasets smaller \cite{segura_neurotrophin_2015} and also making it an unsuitable target for diagnostic assays \cite{hu_gene_2006}, but in general, even though a moderate correlation of gene expression has been reported between peripheral blood cells and brain tissue in humans \cite{chien_increased_2013}, blood samples cannot capture the gene expression of the brain with as much precision as the brain tissue samples themselves, introducing noise into the model and possibly losing important information as well, making brain tissue more likely to uncover functionally relevant alterations in gene expression \cite{voineagu_gene_2012}.
+
+% Relevance
+This is a good moment to study autism because its prevalence has increased in recent years, which could be linked to changes in the sensitivity of the diagnostic criteria but could also be an increase in the disease occurrence, and at the same time, larger genomic datasets are becoming available allowing to perform experiments that weren't possible a short time ago.
+
+\subsection{Literature selection}
+% Scope and selection criteria
+The main focus of this review will be a survey of publicly available data and the most commonly used analysis methods for transcriptomic data. This will include data from microarray and RNA-sequencing experiments using brain tissue samples. (but will exclude single-nucleus and single-cell RNA sequencing data)
+
+Based on this, the selection criteria for the literature studied was that it met the requirements outlined above. The relevance of the articles was assessed by the number of citations it had, if it was cited by the main papers and if it was mentioned in one of the literary reviews studied (\cite{keil_brain_2018}, \cite{voineagu_gene_2012}, \cite{vijayakumar_autism_2016} and \cite{ansel_variation_2017}). In the end, twenty six articles were selected\footnote{The complete list can be found in Appendix \ref{LiteratureAppendix}}.
+
+% Review structure
+Section \ref{Data} will characterise the eight most relevant transcriptomic datasets for the scope of this study, describing in more depth the two believed to be best suited, Section \ref{Literature} will classify the literature reviewed by topics, Section \ref{Methods} will list the most popular methods used to analyse this type of data, describing some handicaps from some of the methods and will then focus on classification methods, studying what has been done and novel approaches and Section \ref{Conclusion} will present the research questions that have arisen from this literature review.

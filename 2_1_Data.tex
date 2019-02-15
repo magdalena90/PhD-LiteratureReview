@@ -1,0 +1,76 @@
+\subsection{Data}\label{Data}
+
+Table \ref{table:transcriptomeDatasets} shows some of the largest publicly available tissue-level brain transcriptome datasets. The variables included in the dataset description are the following:
+
+\begin{itemize}
+    \item \textbf{Source}: Name of the consortium/project that owns the dataset
+
+    \item \textbf{Species}: Species the samples belong to
+    
+    \item \textbf{Technology}: Technology used to measure gene expression in the samples. Can be either Microarray or RNA-seq
+    
+    \item \textbf{Samples}: Total number of samples in the dataset
+    
+    \item \textbf{Individuals}: Total number of individuals from which the samples were taken
+    
+    \item \textbf{Brain Regions}: Brain regions from which the samples were taken from
+    
+    \item \textbf{Ages}: Age range of the individuals
+    
+    \item \textbf{ASD}: Number of individuals in the sample with ASD
+    
+    \item \textbf{Availability}: Ordinal value indicating the level of availability with the following definitions
+    \begin{enumerate}
+        \item Non-normalised data available online without restrictions and in standard format.
+        \item Non-normalised data available online without restrictions but in a difficult format.
+        \item Normalised version available online without restrictions, but non-normalised data has controlled used
+    \end{enumerate}
+    
+    \item \textbf{Suitability}: Ordinal value indicating the suitability of each dataset for future transcriptome analysis. A dataset is considered to be suitable if it provides flexibility to do different experiments and gives reliable results, evaluating the first condition considering the individual's age range, the variety of brain regions considered and if the sample includes ASD individuals, and the second condition with the number of individuals contained in the dataset and the quality of the dataset
+\end{itemize}
+
+\newgeometry{top=1.5cm,bottom=1.5cm}
+\begin{sidewaystable}
+\thispagestyle{empty}
+\begin{center}
+\begin{tabularx}{\linewidth}{ X l l c c c c c c c c }
+Source & Species & Technology & Samples & Individuals & Brain Regions & Ages & ASD & Availability & Suitability \\
+\hline
+
+BrainCloud\footnote{The probe IDs in this dataset do not follow standard notation and cannot be mapped to other datasets except by gene} & Human & Microarray & 269 & 269 & PFC & fetal-80yo & 0 & \href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE30272}{1} & 3 \\
+
+Human Brain Transcriptome (HBT) & Human & Microarray & 1340 & 57 & 16\footnote{Cerebellar cortex, mediodorsal nucleus of the thalamus, striatum, amygdala, hippocampus, and 11 areas of the neocortex\label{16brainregions}} & All? & 0 & \href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE25219}{1} & 3 \\
+
+Allen Brain Map: BrainSpan & Human & RNA-seq, Microarray & 42 & ? & 15\footnote{Dorsolateral prefrontal cortex, Medial FC, Orbital FC, Primary motor cortex, Primary somatosensory cortex, Posterior inferior parietal cortex, Primary auditory temporal cortex , Posterior superior temporal cortex, Inferior temporal cortex, Primary visual cortex, Hippocampus, Amygdala, Striatum, Mediodorsal nucleus of thalamus, Cerebellar cortex} & 8pcw-40yo & 0 & \href{http://www.brainspan.org/static/download.html}{3} & 3 \\
+
+Allen Brain Map: NIH Blueprint & Rhesus Monkey & Microarray & 12 & 12 & 5\footnote{Prefrontal cortex, primary visual cortex, hippocampus, amygdala, ventral striatum} & 0-48mp & 0 & \href{www.blueprintnhpatlas.org/macrodissection/well_data_files.xml}{1} & 4 \\
+
+GTEx Consortium & Human & RNA-seq & ? & 714 & 13\footnote{Amygdala, Anterior cingulate cortex (BA24), Caudate (basal ganglia), Cerebellar Hemisphere, Cerebellum, Cortex, Frontal Cortex (BA9), Hippocampus, Hypothalamus, Nucleus accumbens (basal ganglia), Putamen (basal ganglia), Spinal cord (cervical c-1), Substantia nigra} & 20-79yo\footnote{Age provided in 10 year ranges} & 0 & \href{https://gtexportal.org/home/datasets}{1} & 2 \\
+
+PEC\footnote{PsychEncode Consortium} Capstone Collection & Human & RNA-seq & 2996 & 1906 & 16\textsuperscript{\ref{16brainregions}} & 8pcw-40yo & ~79 & \href{https://www.synapse.org/\#!Synapse:syn12080241}{3} & 1 \\
+
+Voineagu \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3607626}{(PMC3607626)} & Human & Microarray & 79 & 36 & 3\footnote{Cerebellum, Frontal and Temporal cortex} & ? & 19 & \href{https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE28521}{1} & 2\\
+
+Gandal \href{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5898828}{(PMC5898828)} & Human & Microarray, RNA-seq & 700/845 & 700/845 & PFC & ? & 50/53 & \href{https://github.com/mgandal/Shared-molecular-neuropathology-across-major-psychiatric-disorders-parallels-polygenic-overlap}{2} & 1 \\
+
+\end{tabularx}
+\caption{Characteristics of transcriptomic datasets}
+\label{table:transcriptomeDatasets}
+\end{center}
+\end{sidewaystable}
+\restoregeometry
+
+These datasets study gene expression in the brain considering at least one dimension, which can be either spatial (brain regions), temporal (developmental stages), cross-species, autism related, or a combination of these four, so merging the information from different datasets could create a richer representation of the brain transcriptome and provide new insights into its structure, but combining datasets can be difficult because several factors of how each experiment was designed can influence the measurements obtained and can make results taken from different experiments incompatible, for example, using Microarrays or RNA sequencing, or even within the same technology, using different platforms, such as Illumina or Affymetrix, or a custom made microarray, can create problems due to differences in notation, probes, normalisation techniques, or even the general design of the chip. Another factor that has to be taken into account is the experiment design, from the sample selection and extraction, to the pre-processing pipeline used, which can have a big impact in the resulting dataset. Because of this, combining datasets should be done very carefully, taking into consideration all of these variations and, whenever possible, using raw data so the pre-processing can be done in exactly the same way in all datasets.
+
+Another complication, this time particular to ASD datasets, is that samples are usually assigned a binary classification (ASD-related and controls) and since ASD is a very wide spectrum disorder, by classifying it all together as a single class we may be losing particular traits of specific types of autism. On top of this, \cite{ansel_variation_2017} studied the diagnosis tests and the inclusion criteria each paper used to define ASD and found a general lack of consistency between papers, introducing bias into each experiment’s results and making their comparison more difficult.
+
+\subsubsection{Best suited datasets}
+The two best suited datasets were considered to be the PsychEncode Consortium (PEC) Capstone Collection \cite{wang_comprehensive_2018} and the Gandal \cite{gandal_shared_2018} datasets.
+
+The PEC Capstone Collection includes datasets from PyschENCODE, ENCODE, CommonMind, GTEx, Epigenomics Roadmap, among other groups, which were all preprocessed using ENCODE standard pipelines, and together form one of the biggest public brain gene expression datasets, covering all developmental stages, sixteen different brain regions, and including the biggest number of ASD samples. Although data was collected from multiple sources and using different genotyping platforms, all platforms belong to the same company (Illumina), so they follow similar standards, which combined with the uniform preprocessing of all the data, provides a certain level of consistency in the results. The biggest flaw found so far in this dataset is that the raw data is not freely available, so a more meticulous analysis of the preprocessing pipeline has to be carried out to decide if this already preprocessed dataset would be good enough for our experiments or if the raw dataset would need to be requested.
+
+The Gandal dataset contains both microarray and RNA-seq data, and, as the PEC Capstone Collection, is comprised of  fourteen independent datasets in total considering all neurodevelopmental diseases (although only three for ASD) for the microarray data, and five in total (but a single one for ASD) for the RNA-seq data, and they were all processed using a uniform preprocessing pipeline. All the raw data and the code used to perform the preprocessing is freely available in the project's github repository, and the only problem so far seems to be that in the microarray datasets used to create the ASD samples, two datasets use Illumina platforms but the third one uses an Affymetrics, which could carry some compatibility problems, but since this last dataset only contains six ASD samples, it could easily be excluded from the final dataset.
+
+Since both experiments use similar Illumina platforms to perform RNAseq on the ASD-related datasets, if the raw data from the PEC Capstone Collection was available, the two experiments could be combined together, obtaining a dataset with a total of 132 ASD samples plus their corresponding 198 controls.
+
+% Missing: SFARI gene dataset description
